@@ -1,116 +1,455 @@
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* =========================================================
+   JOB SEARCH PLATFORM — GLOBAL DESIGN SYSTEM
+   Stack: Next.js + Tailwind CSS v4 + shadcn/ui
+
+   Theme:
+   - Muted slate blue
+   - Soft neutral backgrounds
+   - Subtle teal highlights
+   - Professional light and dark modes
+   ========================================================= */
+
+/* Enable class-based dark mode */
 @custom-variant dark (&:is(.dark *));
 
+/* =========================================================
+   1. LIGHT THEME
+   ========================================================= */
+
 :root {
-  --color-primary-50: #eff0f5;
-  --color-primary-100: #b4b9f7;
-  --color-primary-200: #8189f1;
-  --color-primary-300: #4d58eb;
-  --color-primary-400: #1928e6;
-  --color-primary-500: #141fb2;
-  --color-primary-600: #0e167e;
-  --color-primary-700: #080d4b;
-  --color-primary-800: #030417;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  color-scheme: light;
+
+  /* Primary brand palette */
+  --brand-50: #f1f5f9;
+  --brand-100: #e2eaf2;
+  --brand-200: #c4d2e2;
+  --brand-300: #a2b7cd;
+  --brand-400: #7e98b3;
+  --brand-500: #617d9a;
+  --brand-600: #475e78;
+  --brand-700: #354b65;
+  --brand-800: #263b53;
+  --brand-900: #1b2d42;
+  --brand-950: #101e30;
+
+  /* Backward-compatible primary palette */
+  --color-primary-50: var(--brand-50);
+  --color-primary-100: var(--brand-100);
+  --color-primary-200: var(--brand-200);
+  --color-primary-300: var(--brand-300);
+  --color-primary-400: var(--brand-400);
+  --color-primary-500: var(--brand-500);
+  --color-primary-600: var(--brand-600);
+  --color-primary-700: var(--brand-700);
+  --color-primary-800: var(--brand-800);
+
+  /* Core surfaces */
+  --background: #f8fafc;
+  --foreground: #1e293b;
+
+  --card: #ffffff;
+  --card-foreground: #243247;
+
+  --popover: #ffffff;
+  --popover-foreground: #1e293b;
+
+  /* Main buttons and actions */
+  --primary: #475e78;
+  --primary-foreground: #ffffff;
+
+  --secondary: #edf2f7;
+  --secondary-foreground: #334155;
+
+  /* Low-emphasis content */
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  /* Hover and selected surfaces */
+  --accent: #e9eff5;
+  --accent-foreground: #334b64;
+
+  /* Error / destructive */
+  --destructive: #b94c4c;
+  --destructive-foreground: #ffffff;
+
+  /* Semantic states */
+  --success: #276b58;
+  --success-foreground: #ffffff;
+  --success-soft: #e6f2ee;
+
+  --warning: #95650e;
+  --warning-foreground: #ffffff;
+  --warning-soft: #fff1d9;
+
+  --info: #466e99;
+  --info-foreground: #ffffff;
+  --info-soft: #eaf0f7;
+
+  --danger-soft: #fbeae9;
+
+  /* Controls and separators */
+  --border: #e2e8f0;
+  --input: #d7e0ea;
+  --ring: #809bb8;
+
+  /* Radius */
+  --radius: 0.75rem;
+
+  /* Chart palette */
+  --chart-1: #536f8c;
+  --chart-2: #598b81;
+  --chart-3: #a28c68;
+  --chart-4: #8b7ca8;
+  --chart-5: #b17777;
+
+  /* Sidebar */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #334155;
+  --sidebar-primary: #475e78;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef3f8;
+  --sidebar-accent-foreground: #354b65;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #809bb8;
+
+  /* Job platform semantic colors */
+  --job-featured: #edf3fa;
+  --job-featured-border: #cad9e9;
+
+  --job-remote: #e7f2ef;
+  --job-remote-foreground: #276b58;
+
+  --job-hybrid: #f4eef9;
+  --job-hybrid-foreground: #765b92;
+
+  --job-onsite: #edf2f7;
+  --job-onsite-foreground: #475e78;
+
+  --job-salary: #28735d;
+
+  /* Application statuses */
+  --status-applied: #eaf0f7;
+  --status-applied-foreground: #475e78;
+
+  --status-review: #fff1d9;
+  --status-review-foreground: #95650e;
+
+  --status-interview: #f0ecfa;
+  --status-interview-foreground: #70559a;
+
+  --status-offer: #e6f2ee;
+  --status-offer-foreground: #276b58;
+
+  --status-rejected: #fbeae9;
+  --status-rejected-foreground: #ad4545;
+
+  /* Custom UI surfaces */
+  --surface: #ffffff;
+  --surface-secondary: #f4f7fa;
+  --surface-tertiary: #ebf0f5;
+
+  --hover: #f1f5f9;
+  --selected: #eaf0f7;
+
+  --divider: #e8edf3;
+  --overlay: rgb(15 23 42 / 45%);
+
+  /* Scrollbar */
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+
+  /* Elevation */
+  --shadow-card:
+    0 2px 12px rgb(15 23 42 / 4%);
+
+  --shadow-card-hover:
+    0 10px 30px rgb(15 23 42 / 8%);
+
+  --shadow-dropdown:
+    0 12px 36px rgb(15 23 42 / 12%);
 }
 
-/* Utility Classes */
-.bg-primary-50 { background-color: var(--color-primary-50); }
-.text-primary-50 { color: var(--color-primary-50); }
-.border-primary-50 { border-color: var(--color-primary-50); }
-.bg-primary-100 { background-color: var(--color-primary-100); }
-.text-primary-100 { color: var(--color-primary-100); }
-.border-primary-100 { border-color: var(--color-primary-100); }
-.bg-primary-200 { background-color: var(--color-primary-200); }
-.text-primary-200 { color: var(--color-primary-200); }
-.border-primary-200 { border-color: var(--color-primary-200); }
-.bg-primary-300 { background-color: var(--color-primary-300); }
-.text-primary-300 { color: var(--color-primary-300); }
-.border-primary-300 { border-color: var(--color-primary-300); }
-.bg-primary-400 { background-color: var(--color-primary-400); }
-.text-primary-400 { color: var(--color-primary-400); }
-.border-primary-400 { border-color: var(--color-primary-400); }
-.bg-primary-500 { background-color: var(--color-primary-500); }
-.text-primary-500 { color: var(--color-primary-500); }
-.border-primary-500 { border-color: var(--color-primary-500); }
-.bg-primary-600 { background-color: var(--color-primary-600); }
-.text-primary-600 { color: var(--color-primary-600); }
-.border-primary-600 { border-color: var(--color-primary-600); }
-.bg-primary-700 { background-color: var(--color-primary-700); }
-.text-primary-700 { color: var(--color-primary-700); }
-.border-primary-700 { border-color: var(--color-primary-700); }
-.bg-primary-800 { background-color: var(--color-primary-800); }
-.text-primary-800 { color: var(--color-primary-800); }
-.border-primary-800 { border-color: var(--color-primary-800); }
+/* =========================================================
+   2. DARK THEME
+   ========================================================= */
+
+.dark {
+  color-scheme: dark;
+
+  --background: #101923;
+  --foreground: #e3eaf2;
+
+  --card: #182430;
+  --card-foreground: #e3eaf2;
+
+  --popover: #1b2937;
+  --popover-foreground: #e3eaf2;
+
+  --primary: #aec2d7;
+  --primary-foreground: #172536;
+
+  --secondary: #263545;
+  --secondary-foreground: #e0e8f1;
+
+  --muted: #243240;
+  --muted-foreground: #a7b6c7;
+
+  --accent: #2c3e50;
+  --accent-foreground: #e5edf5;
+
+  --destructive: #e17878;
+  --destructive-foreground: #17212d;
+
+  --success: #70b9a0;
+  --success-foreground: #10261e;
+  --success-soft: #1a3c33;
+
+  --warning: #e0b56c;
+  --warning-foreground: #322512;
+  --warning-soft: #413321;
+
+  --info: #91b6df;
+  --info-foreground: #152637;
+  --info-soft: #243e58;
+
+  --danger-soft: #492c30;
+
+  --border: #344455;
+  --input: #405165;
+  --ring: #aec2d7;
+
+  --chart-1: #93b4d4;
+  --chart-2: #77b8a7;
+  --chart-3: #c8ad7d;
+  --chart-4: #ab96cc;
+  --chart-5: #ce9292;
+
+  --sidebar: #15212d;
+  --sidebar-foreground: #e3eaf2;
+  --sidebar-primary: #aec2d7;
+  --sidebar-primary-foreground: #172536;
+  --sidebar-accent: #293b4d;
+  --sidebar-accent-foreground: #e3eaf2;
+  --sidebar-border: #344455;
+  --sidebar-ring: #aec2d7;
+
+  --job-featured: #24374b;
+  --job-featured-border: #4c6988;
+
+  --job-remote: #1d4036;
+  --job-remote-foreground: #a2dec8;
+
+  --job-hybrid: #372c48;
+  --job-hybrid-foreground: #d0b7ed;
+
+  --job-onsite: #2a3c4c;
+  --job-onsite-foreground: #c2d5e6;
+
+  --job-salary: #8bcfb7;
+
+  --status-applied: #263b50;
+  --status-applied-foreground: #b9d4ef;
+
+  --status-review: #43351f;
+  --status-review-foreground: #f0cb89;
+
+  --status-interview: #382e50;
+  --status-interview-foreground: #d2bbf5;
+
+  --status-offer: #1e4035;
+  --status-offer-foreground: #a2dec8;
+
+  --status-rejected: #492d32;
+  --status-rejected-foreground: #f1aaaa;
+
+  --surface: #182430;
+  --surface-secondary: #1f2e3d;
+  --surface-tertiary: #2a3b4c;
+
+  --hover: #263747;
+  --selected: #30475e;
+
+  --divider: #344455;
+  --overlay: rgb(0 0 0 / 65%);
+
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: #405369;
+  --scrollbar-thumb-hover: #617a95;
+
+  --shadow-card:
+    0 2px 12px rgb(0 0 0 / 12%);
+
+  --shadow-card-hover:
+    0 10px 30px rgb(0 0 0 / 22%);
+
+  --shadow-dropdown:
+    0 12px 36px rgb(0 0 0 / 30%);
+}
+
+/* =========================================================
+   3. TAILWIND V4 THEME REGISTRATION
+
+   Generates utilities including:
+   bg-primary-600
+   text-primary-700
+   border-primary-200
+   bg-success-soft
+   text-muted-foreground
+   bg-job-remote
+   rounded-lg
+   shadow-card
+   ========================================================= */
 
 @theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
+  /* Typography */
+  --font-sans:
+    var(--font-geist-sans),
+    "Inter",
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
+
+  --font-heading:
+    var(--font-geist-sans),
+    "Inter",
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
+
+  --font-mono:
+    var(--font-geist-mono),
+    ui-monospace,
+    monospace;
+
+  /* Brand shades */
+  --color-primary-50: var(--brand-50);
+  --color-primary-100: var(--brand-100);
+  --color-primary-200: var(--brand-200);
+  --color-primary-300: var(--brand-300);
+  --color-primary-400: var(--brand-400);
+  --color-primary-500: var(--brand-500);
+  --color-primary-600: var(--brand-600);
+  --color-primary-700: var(--brand-700);
+  --color-primary-800: var(--brand-800);
+  --color-primary-900: var(--brand-900);
+  --color-primary-950: var(--brand-950);
+
+  /* shadcn semantic colors */
   --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground:
+    var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Semantic state colors */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-soft: var(--success-soft);
+
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-soft: var(--warning-soft);
+
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-soft: var(--info-soft);
+
+  --color-danger-soft: var(--danger-soft);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground:
+    var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground:
+    var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Job board */
+  --color-job-featured: var(--job-featured);
+  --color-job-featured-border: var(--job-featured-border);
+
+  --color-job-remote: var(--job-remote);
+  --color-job-remote-foreground: var(--job-remote-foreground);
+
+  --color-job-hybrid: var(--job-hybrid);
+  --color-job-hybrid-foreground: var(--job-hybrid-foreground);
+
+  --color-job-onsite: var(--job-onsite);
+  --color-job-onsite-foreground: var(--job-onsite-foreground);
+
+  --color-job-salary: var(--job-salary);
+
+  /* Application tracking */
+  --color-status-applied: var(--status-applied);
+  --color-status-applied-foreground:
+    var(--status-applied-foreground);
+
+  --color-status-review: var(--status-review);
+  --color-status-review-foreground:
+    var(--status-review-foreground);
+
+  --color-status-interview: var(--status-interview);
+  --color-status-interview-foreground:
+    var(--status-interview-foreground);
+
+  --color-status-offer: var(--status-offer);
+  --color-status-offer-foreground:
+    var(--status-offer-foreground);
+
+  --color-status-rejected: var(--status-rejected);
+  --color-status-rejected-foreground:
+    var(--status-rejected-foreground);
+
+  /* Surface utilities */
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-tertiary: var(--surface-tertiary);
+
+  --color-hover: var(--hover);
+  --color-selected: var(--selected);
+  --color-divider: var(--divider);
+
+  /* Border radius */
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -118,50 +457,711 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Shadows */
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+  --shadow-dropdown: var(--shadow-dropdown);
+
+  /* Animation easing */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
+/* =========================================================
+   4. BASE STYLES
+   ========================================================= */
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  input:disabled,
+  textarea:disabled,
+  select:disabled {
+    cursor: not-allowed;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    text-underline-offset: 3px;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    height: auto;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  ::selection {
+    background-color: var(--brand-200);
+    color: var(--brand-900);
+  }
+
+  .dark ::selection {
+    background-color: var(--brand-600);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  :disabled {
+    opacity: 0.65;
+  }
+
+  [hidden]:not([hidden="until-found"]) {
+    display: none !important;
+  }
+
+  /* Typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-foreground font-semibold;
+    font-family: var(--font-heading);
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+
+  h5 {
+    @apply text-base;
+  }
+
+  h6 {
+    @apply text-sm;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  small {
+    font-size: 0.8125rem;
+  }
+
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
+
+  hr {
+    @apply border-border;
+  }
+}
+
+/* =========================================================
+   5. CUSTOM COMPONENT STYLES
+
+   Use these for custom pages.
+   shadcn components keep their own styling.
+   ========================================================= */
+
+@layer components {
+  /* Layout */
+  .page-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .page-section {
+    @apply py-8 md:py-12 lg:py-16;
+  }
+
+  .page-heading {
+    @apply text-2xl font-semibold tracking-tight md:text-3xl;
+  }
+
+  .page-description {
+    @apply mt-2 text-sm text-muted-foreground md:text-base;
+  }
+
+  .section-heading {
+    @apply text-xl font-semibold tracking-tight md:text-2xl;
+  }
+
+  /* Cards */
+  .surface-card {
+    @apply rounded-xl border border-border bg-card text-card-foreground;
+    box-shadow: var(--shadow-card);
+  }
+
+  .interactive-card {
+    @apply rounded-xl border border-border bg-card
+      transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+
+  .interactive-card:hover {
+    border-color: var(--brand-300);
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Job listing cards */
+  .job-card {
+    @apply relative rounded-xl border border-border
+      bg-card p-5 transition-all duration-200
+      sm:p-6;
+    box-shadow: var(--shadow-card);
+  }
+
+  .job-card:hover {
+    border-color: var(--brand-300);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .job-card-featured {
+    @apply border-job-featured-border bg-job-featured;
+  }
+
+  .job-title {
+    @apply text-base font-semibold leading-snug
+      text-foreground sm:text-lg;
+  }
+
+  .company-name {
+    @apply text-sm font-medium text-muted-foreground;
+  }
+
+  .job-meta {
+    @apply flex flex-wrap items-center gap-x-4
+      gap-y-2 text-xs text-muted-foreground sm:text-sm;
+  }
+
+  .job-salary {
+    @apply font-semibold text-job-salary;
+  }
+
+  /* Job type badges */
+  .job-badge {
+    @apply inline-flex items-center gap-1 rounded-full
+      px-2.5 py-1 text-xs font-medium;
+  }
+
+  .job-badge-remote {
+    @apply bg-job-remote text-job-remote-foreground;
+  }
+
+  .job-badge-hybrid {
+    @apply bg-job-hybrid text-job-hybrid-foreground;
+  }
+
+  .job-badge-onsite {
+    @apply bg-job-onsite text-job-onsite-foreground;
+  }
+
+  /* Application tracking statuses */
+  .status-badge {
+    @apply inline-flex items-center rounded-full
+      px-2.5 py-1 text-xs font-medium;
+  }
+
+  .status-applied {
+    @apply bg-status-applied text-status-applied-foreground;
+  }
+
+  .status-review {
+    @apply bg-status-review text-status-review-foreground;
+  }
+
+  .status-interview {
+    @apply bg-status-interview text-status-interview-foreground;
+  }
+
+  .status-offer {
+    @apply bg-status-offer text-status-offer-foreground;
+  }
+
+  .status-rejected {
+    @apply bg-status-rejected text-status-rejected-foreground;
+  }
+
+  /* Search bar */
+  .search-panel {
+    @apply rounded-2xl border border-border bg-card
+      p-3 shadow-card md:p-4;
+  }
+
+  .search-input {
+    @apply h-11 w-full rounded-lg border border-input
+      bg-background px-4 text-sm text-foreground
+      outline-none transition-colors
+      placeholder:text-muted-foreground
+      focus-visible:border-ring
+      focus-visible:ring-2
+      focus-visible:ring-ring/20;
+  }
+
+  .search-input:disabled {
+    @apply bg-muted opacity-60;
+  }
+
+  /* Custom form field */
+  .form-label {
+    @apply mb-1.5 block text-sm font-medium text-foreground;
+  }
+
+  .form-hint {
+    @apply mt-1 text-xs text-muted-foreground;
+  }
+
+  .form-error {
+    @apply mt-1 text-xs text-destructive;
+  }
+
+  /* Filters */
+  .filter-chip {
+    @apply inline-flex items-center gap-2 rounded-full
+      border border-border bg-card px-3 py-1.5
+      text-xs font-medium text-muted-foreground
+      transition-colors
+      hover:border-primary/30
+      hover:bg-accent
+      hover:text-accent-foreground;
+  }
+
+  .filter-chip-active {
+    @apply border-primary/40 bg-accent text-accent-foreground;
+  }
+
+  /* Skill tags */
+  .skill-tag {
+    @apply inline-flex items-center rounded-md
+      border border-border bg-secondary
+      px-2.5 py-1 text-xs font-medium
+      text-secondary-foreground;
+  }
+
+  /* Navigation links */
+  .nav-link {
+    @apply rounded-md px-3 py-2 text-sm font-medium
+      text-muted-foreground transition-colors
+      hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .nav-link-active {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  /* Sidebar navigation */
+  .sidebar-link {
+    @apply flex items-center gap-3 rounded-lg
+      px-3 py-2.5 text-sm font-medium
+      text-sidebar-foreground/80
+      transition-colors
+      hover:bg-sidebar-accent
+      hover:text-sidebar-accent-foreground;
+  }
+
+  .sidebar-link-active {
+    @apply bg-sidebar-accent
+      text-sidebar-accent-foreground;
+  }
+
+  /* Empty state */
+  .empty-state {
+    @apply flex flex-col items-center justify-center
+      rounded-xl border border-dashed border-border
+      bg-card px-6 py-12 text-center;
+  }
+
+  /* Table container */
+  .table-container {
+    @apply w-full overflow-x-auto rounded-xl
+      border border-border bg-card;
+  }
+
+  /* Skeleton loading */
+  .skeleton-block {
+    @apply animate-pulse rounded-md bg-muted;
+  }
+
+  /* Visual sections */
+  .hero-surface {
+    background:
+      radial-gradient(
+        ellipse at top right,
+        rgb(126 152 179 / 12%),
+        transparent 55%
+      ),
+      var(--background);
+  }
+
+  .dark .hero-surface {
+    background:
+      radial-gradient(
+        ellipse at top right,
+        rgb(126 152 179 / 9%),
+        transparent 55%
+      ),
+      var(--background);
+  }
+
+  .subtle-divider {
+    @apply border-t border-divider;
+  }
+}
+
+/* =========================================================
+   6. CUSTOM UTILITIES
+   ========================================================= */
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-pretty {
+  text-wrap: pretty;
+}
+
+@utility scrollbar-hide {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility glass-surface {
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+@utility surface-hover {
+  transition: background-color 180ms ease;
+
+  &:hover {
+    background-color: var(--hover);
+  }
+}
+
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility content-auto {
+  content-visibility: auto;
+}
+
+/* =========================================================
+   7. SCROLLBAR
+   ========================================================= */
+
+@layer base {
+  html {
+    scrollbar-color:
+      var(--scrollbar-thumb)
+      var(--scrollbar-track);
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+}
+
+/* =========================================================
+   8. NATIVE FORM IMPROVEMENTS
+   ========================================================= */
+
+@layer base {
+  input,
+  textarea,
+  select {
+    accent-color: var(--primary);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--muted-foreground);
+    opacity: 1;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input[type="search"] {
+    appearance: none;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    cursor: pointer;
+  }
+
+  input[type="file"]::file-selector-button {
+    cursor: pointer;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    accent-color: var(--primary);
+  }
+
+  input:autofill {
+    transition: background-color 9999s ease-out;
+  }
+}
+
+/* =========================================================
+   9. ANIMATIONS
+   ========================================================= */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out both;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.35s ease-out both;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.25s ease-out both;
+  }
+
+  .animate-shimmer {
+    background-image: linear-gradient(
+      90deg,
+      var(--muted) 25%,
+      var(--surface-tertiary) 50%,
+      var(--muted) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+}
+
+/* =========================================================
+   10. ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .interactive-card:hover {
+    transform: none;
+  }
+}
+
+/* Higher contrast support */
+@media (prefers-contrast: more) {
+  :root {
+    --border: #8795a7;
+    --input: #8795a7;
+    --muted-foreground: #475569;
+  }
+
+  .dark {
+    --border: #8394a8;
+    --input: #8394a8;
+    --muted-foreground: #c4d0dc;
+  }
+}
+
+/* =========================================================
+   11. RESPONSIVE REFINEMENTS
+   ========================================================= */
+
+@media (max-width: 640px) {
+  body {
+    font-size: 0.875rem;
+  }
+
+  .job-card {
+    padding: 1rem;
+  }
+
+  .page-section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* =========================================================
+   12. PRINT STYLES
+   Useful for printable resumes and job details
+   ========================================================= */
+
+@media print {
+  :root,
+  .dark {
+    color-scheme: light;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12px;
+  }
+
+  .print-hide,
+  nav,
+  aside,
+  footer {
+    display: none !important;
+  }
+
+  .print-break-before {
+    break-before: page;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  .job-card,
+  .surface-card {
+    box-shadow: none !important;
+    border-color: #d1d5db !important;
+  }
+
+  @page {
+    margin: 12mm;
   }
 }

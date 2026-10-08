@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import {ArrowBigRight} from "lucide-react"
+import Link from "next/link";
+import { ArrowBigRight } from "lucide-react";
 
 
 export default function Home() {
@@ -17,7 +18,12 @@ export default function Home() {
               intuitive platform.
             </p>
             <div className="mt-8 flex flex-col items-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 gap-4">
-              <Button size='lg' className="bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-300 text-lg">
+              <Button
+                render={<Link href="/sign-up" />}
+                nativeButton={false}
+                size="lg"
+                className="bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-300 text-lg"
+              >
                 Start for free
                 <ArrowBigRight className="ml-2" />
               </Button>
